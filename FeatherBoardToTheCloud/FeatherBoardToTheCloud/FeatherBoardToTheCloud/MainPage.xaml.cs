@@ -18,8 +18,12 @@ namespace FeatherBoardToTheCloud
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            TableCloudStorage linktocloud = new TableCloudStorage();
-            bool tableExisting = linktocloud.DoesTableExists();
+            FileParser fileInterperter = new FileParser("20.9, 10.4, 90.0, 33.3, 44.4, 55.5, 66.6, 77.7, 88.8, 99.9, 11.1");
+            EntryGenerator EntryCreator = new EntryGenerator(fileInterperter.FileToArray(), 1);
+            EntryCreator.GenerateEntry();
+            TableCloudStorage linktocloud = new TableCloudStorage(EntryCreator.entryForTheCloud);
+            linktocloud.PrepDataForCloud();
+            //bool tableExisting = linktocloud.DoesTableExists();
           //  System.Diagnostics.Debug.WriteLine("************************************/n****************************/n***********************/n");
            // System.Diagnostics.Debug.WriteLine("" + linktocloud.doesTableExists().ToString());
            // System.Diagnostics.Debug.WriteLine("************************************/n****************************/n***********************/n");
